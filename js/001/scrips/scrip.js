@@ -29,9 +29,6 @@ function dateOfBorn(date) {
 }
 
 //dateOfBorn(date);
-
-//console.log(date);
-
 function fechaDeCumple(date) {
 
     var fecha= [];
