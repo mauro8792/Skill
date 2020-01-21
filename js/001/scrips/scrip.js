@@ -77,7 +77,7 @@ meses.push(new Month('Noviembre',30 ));
 meses.push(new Month('Diciembre',31 ));
 
 
- meses.forEach(mes => {
+meses.forEach(mes => {
     console.log(mes.toString());
 }); 
 
