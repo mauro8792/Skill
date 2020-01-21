@@ -51,4 +51,45 @@ function fechaDeCumple(date) {
     }
     
 }
-fechaDeCumple(date);
+//fechaDeCumple(date);
+
+function Month(name, days){
+    this.name=name;
+    this.days=days;
+    this.toString = function(){
+        return "Nombre: "+ this.name + ", cantidad de Días: "+ this.days;
+    }
+    
+}
+
+var meses= [];
+meses.push( new Month('enero', 31) );
+meses.push(new Month('Febrero',29) );
+meses.push(new Month('Marzo',31) );
+meses.push(new Month('Abril',30) );
+meses.push(new Month('Mayo',31) );
+meses.push(new Month('Junio',30) );
+meses.push(new Month('Julio',31) );
+meses.push(new Month('Agosto',31) );
+meses.push(new Month('Septiembre',30) );
+meses.push(new Month('Octubre',31 ));
+meses.push(new Month('Noviembre',30 ));
+meses.push(new Month('Diciembre',31 ));
+
+
+ meses.forEach(mes => {
+    console.log(mes.toString());
+}); 
+
+/* for (let i = 0; i < meses.length; i++) {
+    console.log(meses[i]);    
+    
+}
+var i=0;
+while (i< meses.length) {
+    console.log(meses[i]); 
+    i++;
+} */
+
+
+
