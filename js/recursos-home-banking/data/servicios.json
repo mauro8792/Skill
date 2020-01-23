@@ -15,6 +15,10 @@
         {
             "name": "Luz",
             "amount": 800
+        },
+        {
+            "name": "Claro",
+            "amount": 800
         }
     ]
 }

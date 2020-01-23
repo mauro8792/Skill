@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <title>HOME BANKING</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="js/homebanking.js"></script>
@@ -14,9 +15,33 @@
       <div class="align-left">
         <!-- <span id="nombre"><button class="links" onclick="iniciarSesion()">Iniciar Sesion</button></span> -->
         <span id="nombre"></span>
-        <button class="links" onclick="iniciarSesion()">Iniciar Sesion</button>
+        <!-- <button class="links" onclick="iniciarSesion()">Iniciar Sesion</button> -->
+        <button onclick="document.getElementById('id01').style.display='block'" class="links">Iniciar Sesion</button>
         <img class="avatar" src="img/avatar.svg"/>
       </div>
+      <div class="w3-container">
+        <!-- <button onclick="document.getElementById('id01').style.display='block'" class="w3-button w3-black">Open Modal</button> -->
+      
+        <div id="id01" class="w3-modal">
+          <div class="w3-modal-content">
+            <div class="w3-container">
+              
+              <span onclick="document.getElementById('id01').style.display='none'" class="w3-button w3-display-topright">&times;</span>
+              
+              <form class="form" action="javascript:void(iniciarSesion())">
+                <label for="">User: </label>
+                <input type="text" id="mail" name="mail" value="">
+                <label for="">Password: </label>
+                <input type="text" id="pass" name="pass" value="">
+                <hr>
+                <input type="submit" value="Envíar">
+              </form>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+      
     </div>
     <div class="white-container">
       <div class="menu-container">
@@ -36,4 +61,6 @@
       </div>
     </div>
   </body>
+
+  
 </html>
