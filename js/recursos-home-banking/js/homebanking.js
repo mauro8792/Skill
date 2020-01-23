@@ -1,9 +1,45 @@
 //Declaración de variables
+var dataAgenda= {};
+var dataServicios={};
+var dataUser={};
 var nombreUsuario = "";
 var limiteExtraccion = 0;
 var saldoCuenta = 0;
-var servicios= [];
-var agenda = [];
+
+//llamar al jsn de servicios
+var requestURL = './data/servicios.json';
+var request = new XMLHttpRequest();
+request.open('GET', requestURL);
+request.responseType = 'json';
+request.send();
+request.onload = function() {
+    
+    dataServicios =request.response; 
+  }
+ 
+//lamar al json de agenda para hacer transferenciua
+var xmlhttp = new XMLHttpRequest();
+xmlhttp.onreadystatechange = function() {
+  if (this.readyState == 4 && this.status == 200) {
+    dataAgenda = JSON.parse(this.responseText);
+  }
+};
+xmlhttp.open("GET", "./data/agenda.json", true);
+xmlhttp.send(); 
+
+// llamar json para iniciar session con usuarios
+var xmlhttp = new XMLHttpRequest();
+xmlhttp.onreadystatechange = function() {
+  if (this.readyState == 4 && this.status == 200) {
+    dataUser = JSON.parse(this.responseText);
+  }
+};
+xmlhttp.open("GET", "./data/user.json", true);
+xmlhttp.send(); 
+
+
+
+
 function Servicio(name, amount) {
     this.name=name;
     this.amount=amount;
@@ -21,17 +57,18 @@ function User(nombre, clave, saldo) {
     
 }
 
-var Mauro = new User("mauro",123456,50000);
 
+/* //var Mauro = new User("mauro",123456,50000);
 servicios.push(new Servicio("Cable", 2500));
 servicios.push(new Servicio("Agua", 1800));
 servicios.push(new Servicio("Gas", 1200));
 servicios.push(new Servicio("Luz", 800));
 
-agenda.push(new Cuenta(000000, "Dario"));
+agenda.push(new Cuenta(888888, "Dario"));
 agenda.push(new Cuenta(111111, "Martin"));
 agenda.push(new Cuenta(222222, "Pablo"));
-agenda.push(new Cuenta(333333, "Leo"));
+agenda.push(new Cuenta(333333, "Leo")); */
+
 
 
 
@@ -56,6 +93,7 @@ function extraerDinero() {
         alert("Usted no puede sacar la suma de: $" + extraer+ ", su limite es: $"+limiteExtraccion);
     }else{
         saldoCuenta = saldoCuenta- extraer;
+        
         alert("Transaccion sactifactoria");
         actualizarSaldoEnPantalla();
     }
@@ -79,31 +117,31 @@ aplicando la validación que indica la guía 3 (si hay dinero suficiente en
 la cuenta). */
 function pagarServicio() {
    pagar = parseInt( prompt("Que servicio desea pagar: ?"+
-                   " 1." + servicios[0].name +
-                   " 2." + servicios[1].name+
-                   " 3." + servicios[2].name+
-                   " 4." + servicios[3].name)
+                   " 1." + dataServicios.Servicios[0].name +
+                   " 2." + dataServicios.Servicios[1].name+
+                   " 3." + dataServicios.Servicios[2].name+
+                   " 4." + dataServicios.Servicios[3].name)
    );
    
     switch (pagar) {
         case 1:
             
-            saldoCuenta= saldoCuenta - servicios[0].amount;
+            saldoCuenta= saldoCuenta - dataServicios.Servicios[0].amount;
             actualizarSaldoEnPantalla();
             alert("Transaccion sastifactoria");
             break;
         case 2:
-            saldoCuenta= saldoCuenta - servicios[1].amount;
+            saldoCuenta= saldoCuenta - dataServicios.Servicios[1].amount;
             actualizarSaldoEnPantalla();
             alert("Transaccion sastifactoria");
             break;
         case 3:
-            saldoCuenta= saldoCuenta - servicios[2].amount;
+            saldoCuenta= saldoCuenta - dataServicios.Servicios[2].amount;
             actualizarSaldoEnPantalla();
             alert("Transaccion sastifactoria");
             break;
         case 4:
-            saldoCuenta= saldoCuenta - servicios[3].amount;
+            saldoCuenta= saldoCuenta - dataServicios.Servicios[3].amount;
             actualizarSaldoEnPantalla();
             alert("Transaccion sastifactoria");
             break;
@@ -122,8 +160,9 @@ function transferirDinero() {
     var cantidad = parseInt(prompt("Cuanta cantidad desea Transferir?"));
     var sastifactoria = true;
     if (cantidad < saldoCuenta) {
-        agenda.forEach(user => {        
+        dataAgenda.Agenda.forEach(user => {  
             if (user.name == nombreDestino) {
+                console.log("hola")
                 saldoCuenta = saldoCuenta - cantidad;
                 alert("Transaccion sastifactoria");
                 actualizarSaldoEnPantalla();
@@ -145,16 +184,17 @@ cuenta en $0. */
 function iniciarSesion() {
     nombreUsuario = prompt("Nombre de usuario: ");
     var password= prompt("Password: ");
-    if (Mauro.clave == password && Mauro.nombre == nombreUsuario) {
+    
+    if (dataUser.clave == password && dataUser.nombre == nombreUsuario) {
         console.log("hola");
         
-        saldoCuenta = parseInt(Mauro.saldo);
+        saldoCuenta = parseInt(dataUser.saldo);
         actualizarSaldoEnPantalla();
         cargarNombreEnPantalla();
     }else{
         console.log("fallo");
         saldoCuenta=0;
-        Mauro.saldo=0;
+        //Mauro.saldo=0;
         actualizarSaldoEnPantalla();
     }
 }

@@ -1,0 +1,20 @@
+{
+    "Servicios": [
+        {
+            "name": "Cable",
+            "amount": 2500
+        },
+        {
+            "name": "Agua",
+            "amount": 1800
+        },
+        {
+            "name": "Gas",
+            "amount": 1200
+        },
+        {
+            "name": "Luz",
+            "amount": 800
+        }
+    ]
+}
