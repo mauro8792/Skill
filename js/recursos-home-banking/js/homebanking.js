@@ -83,17 +83,6 @@ function User(nombre, clave, saldo) {
   this.saldo = saldo;
 }
 
-/* //var Mauro = new User("mauro",123456,50000);
-servicios.push(new Servicio("Cable", 2500));
-servicios.push(new Servicio("Agua", 1800));
-servicios.push(new Servicio("Gas", 1200));
-servicios.push(new Servicio("Luz", 800));
-
-agenda.push(new Cuenta(888888, "Dario"));
-agenda.push(new Cuenta(111111, "Martin"));
-agenda.push(new Cuenta(222222, "Pablo"));
-agenda.push(new Cuenta(333333, "Leo")); */
-
 //Ejecución de las funciones que actualizan los valores de las variables en el HTML.
 window.onload = function() {
   cargarNombreEnPantalla();
