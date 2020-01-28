@@ -1,52 +1,4 @@
-let logeado = false;
 
-function iniciarSesion(){
-    const email = document.getElementById('userName').value;
-    const password = document.getElementById('password').value;
-    const password2 = document.getElementById('password2').value;
-
-    console.log(validarEmail(email));
-    if(validarEmail(email)){
-        if (password == password2) {
-            
-            logeado = true;
-            console.log(logeado);
-            
-            alert('Logeado');
-            
-            document.getElementById('userName').value=" "
-            document.getElementById('password').value=""
-            document.getElementById('password2').value=""
-            
-            window.location="./index2.html";
-        }else
-            alert('Contraseña incorrecta');
-    }else{
-        alert('Email incorrecto');
-    }
-    
-    
-}
-
-
-function validarEmail(campo) {
-    emailRegex = /^[-\w.%+]{1,64}@(?:[A-Z0-9-]{1,63}\.){1,125}[A-Z]{2,63}$/i;
-    if (emailRegex.test(campo)) {
-      return true;
-    } else {
-        
-        return false;
-    }
-  }
-
-  // ----------------------------- index 2 -----------------------------//
-  console.log(logeado);
-  
-if (logeado) {
-    document.getElementById("aceptado").innerText = "chau"
-}
-  
-  
 function Person(id,nombre, email, edad){
     this.id = id;
     this.nombre = nombre;
@@ -154,6 +106,3 @@ function insertarFila() {
  
 
  
-  
-
-  

@@ -6,38 +6,36 @@ var nombreUsuario = "";
 var limiteExtraccion = 0;
 var saldoCuenta = 0;
 
-var personas=[];
-  function cargarUsuarios(url) {
-      return new Promise(function(resolve,reject){
-          var request = new XMLHttpRequest();
-          request.open('GET', url);
-          request.responseType = 'json';
-          request.onload = function () {
-              if (request.status == 200) {
-                  resolve(request.response);
-                  
-              }
-              else
-                reject(Error('Hubo un error..!!'));
-              
-          }
-          request.onerror= function () {
-            reject(Error('Hubo un error..!!'));
-              
-          }
-          request.send();
-      });
-      
-  }
+var personas = [];
+function cargarUsuarios(url) {
+  return new Promise(function(resolve, reject) {
+    var request = new XMLHttpRequest();
+    request.open("GET", url);
+    request.responseType = "json";
+    request.onload = function() {
+      if (request.status == 200) {
+        resolve(request.response);
+      } else reject(Error("Hubo un error..!!"));
+    };
+    request.onerror = function() {
+      reject(Error("Hubo un error..!!"));
+    };
+    request.send();
+  });
+}
 
-  var personitas;
-  cargarUsuarios("./data/user.json")
-    .then((response)=>{
-        console.log(response);
-        
-        personitas = response;
-    });
+var personitas;
+cargarUsuarios("./data/user.json").then(response => {
+  personitas = response;
 
+  // una forma de hacer
+  /* for (let i = 0; i < personitas.User.length; i++) {
+          let texto = JSON.stringify(personitas.User[i]);
+          localStorage.setItem('user'+i, texto);
+        } */
+  // la otra forma de hacer
+  localStorage.setItem("cuentas", JSON.stringify(personitas.User));
+});
 
 //llamar al jsn de servicios
 var requestURL = "./data/servicios.json";
@@ -85,7 +83,7 @@ function User(nombre, clave, saldo) {
 
 //Ejecución de las funciones que actualizan los valores de las variables en el HTML.
 window.onload = function() {
-  cargarNombreEnPantalla();
+  
   actualizarSaldoEnPantalla();
   actualizarLimiteEnPantalla();
 };
@@ -208,32 +206,51 @@ cuenta en $0. */
 
 
 function iniciarSesion() {
-  var m = document.getElementById("mail");
-  var p = document.getElementById("pass");
-  //nombreUsuario = prompt("Nombre de usuario: ");
-  //var password= prompt("Password: ");
+  
+    var m = document.getElementById("mail");
+    var p = document.getElementById("pass");
 
-  var existe = personitas.User.find(person => person.nombre== m.value);
-  
-  
-  
-  if(existe){
-    if (existe.clave == p.value && existe.nombre == m.value) {
+    // primera forma de hacer
+    /* let storUser = [];
+  for (let i = 0; i < personitas.User.length; i++) { 
+    storUser.push(JSON.parse( localStorage.getItem("user"+i)));
+        
+  } */
+    let cuentasUsers = JSON.parse(localStorage.getItem("cuentas"));
+    //cuentasUsers.push(JSON.parse(localStorage.getItem('cuentas')));
+    console.log(cuentasUsers);
+
+    var existe = cuentasUsers.find(person => person.nombre == m.value);
+
+    if (existe) {
+      if (existe.clave == p.value && existe.nombre == m.value) {
         console.log("hola");
-    
+        nombreUsuario = existe.nombre;
         saldoCuenta = parseInt(existe.saldo);
+        
+        /* document.getElementById("ini").style.visibility = "hidden";
+        document.getElementById("fin").style.visibility = "visible"; */
+        document.getElementById("ini").onclick = finSesion;
+        document.getElementById("ini").innerText = "Cerrar Sesion";
+        document.getElementById("id01").style.display = "none";
         actualizarSaldoEnPantalla();
         cargarNombreEnPantalla();
-        document.getElementById("id01").style.display = "none";
       } else {
         console.log("fallo");
         saldoCuenta = 0;
         //Mauro.saldo=0;
         actualizarSaldoEnPantalla();
       }
-  }else
-    alert("no tienes cuenta!");
+    } else alert("no tienes cuenta!");
   
+    
+
+}
+function finSesion() {
+  /* document.getElementById("fin").style.visibility = "hidden";
+  document.getElementById("ini").style.visibility = "visible"; */
+  confirm("Desea cerrar la session "+ nombreUsuario + "?");
+  location.reload();
 }
 
 //Funciones que actualizan el valor de las variables en el HTML
@@ -273,5 +290,4 @@ readJson()
     console.log(e);
   }); */
 
-  // promesas
-  
+// promesas

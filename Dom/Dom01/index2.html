@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="./js/script.js"></script>
+  <!-- <script src="./js/script2.js"></script> -->
+  <title>DOM</title>
+  
+</head>
+<body>
+   <style>
+    ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+  }
+  
+  li {
+    float: left;
+    border-right:1px solid #bbb;
+  }
+  
+  li:last-child {
+    border-right: none;
+  }
+  
+  li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  
+  li a:hover:not(.active) {
+    background-color: #111;
+  }
+  
+  .active {
+    background-color: #4CAF50;
+  }
+    </style>
+    <ul>
+        <!-- <li><a class="active" href="#home">Home</a></li>
+        <li><a href="#news">News</a></li>
+        <li><a href="#contact">Contact</a></li> -->
+        <li style="float:right" ><p id="aceptado"></p>></li>
+      </ul>
+      <p id="aceptado2">hola</p>
+    <div align="center">
+        <form id="formulario" >
+            <label for="name">Nombre</label><br>
+            <input type="text" name="nombre" required id="nombre"><br><br>
+            <label for="email">Email</label><br>
+            <input type="email" name="email" required id="email"><br><br>
+            <label for="edad">Edad</label><br>
+            <input type="number" name="edad" required id="edad"><br><br>
+            <button type="submit"  >Agregar</button>
+        </form>
+    </div>
+  <br><br>
+    <section style="  background-color: yellow;
+    float: left;
+    width: 49.5%;
+    margin-top: inherit;
+    height: 10;
+    border-radius: 10px;
+    border: 2px solid #0f0e0e;
+                     ">
+                    
+        
+            <table id="tabla1" style="margin: auto; width: 100%; text-align: center;">
+                <caption><h3>Sala 1</h3></caption>
+                <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Email</th>
+                    <th>Edad</th>
+                    <th>Eliminar</th>
+                    
+                </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+    </section>  
+    <section style=" background-color: rgb(5, 159, 170);
+    float: right;
+    width: 49.5%;
+    margin-top: inherit;
+    height: 10%;
+    border: 2px solid #0f0e0e;
+    border-radius: 10px;">
+        
+        <table id="tabla2" style="margin: auto; width: 100%; text-align: center;">
+            <caption><h3>Sala 2</h3></caption>
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Email</th>
+                <th>Edad</th>
+                <th>Eliminar</th>
+              </tr>
+            </thead>
+            <tbody>
+            </tbody>
+        </table>
+    </section>
+  
+  
+</body>
+</html>
+
+
+
